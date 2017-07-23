@@ -23,7 +23,7 @@ public class WindHailstoneDisaster implements RatingSpec {
 	 * 風・雹災の保険料率を適用する
 	 *
 	 *
-	 * @return 建物基本料率
+	 * @return 風・雹災適用後の料率
 	 */
 	@Override
 	public BigDecimal apply() {

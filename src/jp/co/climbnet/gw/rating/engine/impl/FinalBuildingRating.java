@@ -5,25 +5,25 @@ import java.math.BigDecimal;
 import jp.co.climbnet.gw.rating.engine.RatingSpec;
 
 /**
- * 水災仕様
+ * 建物最終適用料率
  *
  *
  * @author t-kubo
  *
  */
-public class WaterDisaster implements RatingSpec {
+public class FinalBuildingRating implements RatingSpec {
 
 	private RatingSpec dependRating;
 
-	public WaterDisaster(RatingSpec depend) {
+	public FinalBuildingRating(RatingSpec depend) {
 		this.dependRating = depend;
 	}
 
 	/**
-	 * 水災の保険料率を適用する
+	 * 建物最終適用料率を算出する
 	 *
 	 *
-	 * @return 水災適用後の料率
+	 * @return 建物最終適用料率
 	 */
 	@Override
 	public BigDecimal apply() {
