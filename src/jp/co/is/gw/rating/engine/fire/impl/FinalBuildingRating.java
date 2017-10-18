@@ -2,6 +2,7 @@ package jp.co.is.gw.rating.engine.fire.impl;
 
 import java.math.BigDecimal;
 
+import jp.co.is.gw.rating.engine.RatingContext;
 import jp.co.is.gw.rating.engine.RatingSpec;
 
 /**
@@ -11,12 +12,10 @@ import jp.co.is.gw.rating.engine.RatingSpec;
  * @author t-kubo
  *
  */
-public class FinalBuildingRating implements RatingSpec {
+public class FinalBuildingRating extends AbstractRatingSpec {
 
-	private RatingSpec dependRating;
-
-	public FinalBuildingRating(RatingSpec depend) {
-		this.dependRating = depend;
+	public FinalBuildingRating(RatingSpec depend, RatingContext context) {
+		super(depend, context);
 	}
 
 	/**
@@ -28,7 +27,7 @@ public class FinalBuildingRating implements RatingSpec {
 	@Override
 	public BigDecimal apply() {
 
-		BigDecimal rating = dependRating.apply();
+		BigDecimal rating = getDependRate();
 
 		return null;
 	}
