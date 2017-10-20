@@ -7,7 +7,6 @@ import static org.junit.Assert.*;
 import java.math.BigDecimal;
 
 import org.easymock.EasyMockSupport;
-import org.easymock.Mock;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -18,8 +17,7 @@ public class AbstractRatingSpecTest extends EasyMockSupport {
 
 	private static final BigDecimal EXPECTED_VALUE = new BigDecimal(100d);
 
-	@Mock
-	private RatingSpec mockerdRatingSpec;
+	private RatingSpec mockedRatingSpec;
 
 	private RatingContext context;
 	private AbstractRatingSpec testee;
@@ -27,18 +25,19 @@ public class AbstractRatingSpecTest extends EasyMockSupport {
 	@Before
 	public void setUp() throws Exception {
 
+		resetAll();
+		mockedRatingSpec = createMock(RatingSpec.class);
 		context = new RatingContext();
-		testee = partialMockBuilder(AbstractRatingSpec.class).withConstructor(mockerdRatingSpec, context).createMock();
+		testee = createMockBuilder(AbstractRatingSpec.class).withConstructor(mockedRatingSpec, context).createMock();
 	}
 
 	@Test
 	public void testGetDependRate() {
 
-		mockerdRatingSpec.apply();
-		expectLastCall().andReturn(EXPECTED_VALUE);
+		expect(mockedRatingSpec.apply()).andReturn(EXPECTED_VALUE);
 
 		replayAll();
-		BigDecimal actual = testee.apply();
+		BigDecimal actual = testee.getDependRate();
 		verifyAll();
 
 		assertThat(actual, is(EXPECTED_VALUE));
