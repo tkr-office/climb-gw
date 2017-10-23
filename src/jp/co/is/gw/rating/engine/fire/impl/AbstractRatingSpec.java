@@ -2,6 +2,8 @@ package jp.co.is.gw.rating.engine.fire.impl;
 
 import java.math.BigDecimal;
 
+import com.google.common.annotations.VisibleForTesting;
+
 import jp.co.is.gw.rating.engine.RatingContext;
 import jp.co.is.gw.rating.engine.RatingSpec;
 
@@ -43,6 +45,11 @@ public abstract class AbstractRatingSpec implements RatingSpec {
 	 */
 	protected RatingContext context() {
 		return context;
+	}
+
+	@VisibleForTesting
+	public RatingSpec getDependRating() {
+		return dependRating;
 	}
 
 }
