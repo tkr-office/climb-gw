@@ -1,30 +1,35 @@
-package jp.co.is.gw.rating.engine;
+package jp.co.is.gw.rating.engine.common;
 
 import java.math.BigDecimal;
 
-import jp.co.is.gw.rating.engine.constants.ClassOfGeneralProperty;
-import jp.co.is.gw.rating.engine.constants.ClassOfResidentialProperty;
-import jp.co.is.gw.rating.engine.constants.Incidental;
-import jp.co.is.gw.rating.engine.constants.IntegratedPayment;
-import jp.co.is.gw.rating.engine.constants.RangeDiscountType;
+import jp.co.is.gw.rating.engine.common.constants.BuildingType;
+import jp.co.is.gw.rating.engine.common.constants.ClassOfGeneralProperty;
+import jp.co.is.gw.rating.engine.common.constants.ClassOfResidentialProperty;
+import jp.co.is.gw.rating.engine.common.constants.Incidental;
+import jp.co.is.gw.rating.engine.common.constants.IntegratedPayment;
+import jp.co.is.gw.rating.engine.common.constants.Location;
+import jp.co.is.gw.rating.engine.common.constants.RangeDiscountType;
 
 /**
  *
- * 保険料計算コンテキスト 保険料計算の算出過程で必要となる各種の値を格納しておくためのコンテナクラス
+ * 保険料計算コンテキスト<br/>
+ * 保険料計算の算出過程で必要となる各種の値を格納しておくためのコンテナクラス
  *
  * @author t-kubo
  *
  */
 public class RatingContext {
 
-	private BigDecimal buildingInsurance; // 建物保険金額
-	private ClassOfGeneralProperty classOfGeneralProperty; // 一般物件における構造級別
-	private ClassOfResidentialProperty classOfResidentialProperty; // 住宅物件における構造級別
+	private BigDecimal buildingInsurance = BigDecimal.ZERO; // 建物保険金額
+	private BuildingType buildingType = BuildingType.NotSpecified; //建物物件種別
+	private ClassOfGeneralProperty classOfGeneralProperty = ClassOfGeneralProperty.NotSpecified; // 一般物件における構造級別
+	private ClassOfResidentialProperty classOfResidentialProperty = ClassOfResidentialProperty.NotSpecified; // 住宅物件における構造級別
 	private Incidental windHailstoneDisaster = Incidental.NO; // 風・雹災付帯有無
 	private Incidental waterDisaster = Incidental.NO; // 水災付帯有無
 	private Incidental temporaryCost = Incidental.NO; // 臨時費用付帯有無
-	private IntegratedPayment integratedPayment; // 払込方法
+	private IntegratedPayment integratedPayment = IntegratedPayment.NotSpecified; // 払込方法
 	private RangeDiscountType rangeDiscountType = RangeDiscountType.None; // 範囲割引
+	private Location location = Location.NotSpecified; // 物件所在地
 
 	public BigDecimal getBuildingInsurance() {
 		return buildingInsurance;
@@ -32,6 +37,14 @@ public class RatingContext {
 
 	public void setBuildingInsurance(BigDecimal buildingInsurance) {
 		this.buildingInsurance = buildingInsurance;
+	}
+
+	public BuildingType getBuildingType() {
+		return buildingType;
+	}
+
+	public void setBuildingType(BuildingType buildingType) {
+		this.buildingType = buildingType;
 	}
 
 	public ClassOfGeneralProperty getClassOfGeneralProperty() {
@@ -88,6 +101,14 @@ public class RatingContext {
 
 	public void setRangeDiscountType(RangeDiscountType rangeDiscountType) {
 		this.rangeDiscountType = rangeDiscountType;
+	}
+
+	public Location getLocation() {
+		return location;
+	}
+
+	public void setLocation(Location location) {
+		this.location = location;
 	}
 
 }

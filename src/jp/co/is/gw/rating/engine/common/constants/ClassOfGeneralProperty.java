@@ -1,4 +1,4 @@
-package jp.co.is.gw.rating.engine.constants;
+package jp.co.is.gw.rating.engine.common.constants;
 
 /**
  *
@@ -9,6 +9,7 @@ package jp.co.is.gw.rating.engine.constants;
  */
 public enum ClassOfGeneralProperty {
 
+	NotSpecified("指定なし"),				//指定なし
 	HighGrade("特級"),						//A特級
 	FirstGrade("1級"),						//1級
 	SecondGrade("2級"),					//2級

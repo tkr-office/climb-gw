@@ -4,8 +4,8 @@ import java.math.BigDecimal;
 
 import com.google.common.annotations.VisibleForTesting;
 
-import jp.co.is.gw.rating.engine.RatingContext;
-import jp.co.is.gw.rating.engine.RatingSpec;
+import jp.co.is.gw.rating.engine.common.RatingContext;
+import jp.co.is.gw.rating.engine.common.RatingSpec;
 
 /**
  *
@@ -16,8 +16,15 @@ import jp.co.is.gw.rating.engine.RatingSpec;
  */
 public abstract class AbstractRatingSpec implements RatingSpec {
 
+	private static final RatingSpec DEFALUT_RATING_SPEC = new AbstractRatingSpec.DefaultRatingSpec();
+
 	private RatingSpec dependRating;
 	private RatingContext context;
+
+	public AbstractRatingSpec(RatingContext context) {
+		dependRating = DEFALUT_RATING_SPEC;
+		this.context = context;
+	}
 
 	public AbstractRatingSpec(RatingSpec dependRating, RatingContext context) {
 		this.dependRating = dependRating;
@@ -45,6 +52,15 @@ public abstract class AbstractRatingSpec implements RatingSpec {
 	 */
 	protected RatingContext context() {
 		return context;
+	}
+
+	private static class DefaultRatingSpec implements RatingSpec {
+
+		@Override
+		public BigDecimal apply() {
+			return BigDecimal.ONE;
+		}
+
 	}
 
 	@VisibleForTesting

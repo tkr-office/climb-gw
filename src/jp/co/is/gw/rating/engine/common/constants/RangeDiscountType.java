@@ -1,4 +1,4 @@
-package jp.co.is.gw.rating.engine.constants;
+package jp.co.is.gw.rating.engine.common.constants;
 
 /**
  *

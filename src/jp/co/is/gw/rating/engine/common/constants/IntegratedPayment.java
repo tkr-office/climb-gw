@@ -1,4 +1,4 @@
-package jp.co.is.gw.rating.engine.constants;
+package jp.co.is.gw.rating.engine.common.constants;
 
 /**
  *
@@ -9,6 +9,7 @@ package jp.co.is.gw.rating.engine.constants;
  */
 public enum IntegratedPayment {
 
+	NotSpecified("指定なし"),				//指定なし
 	LumpSun("一時払"),						//一時払
 	LongTermLumpSum("長期一括払"),		//長期一括払
 	LongTermYearlyPayment("長期年払"),	//長期年払

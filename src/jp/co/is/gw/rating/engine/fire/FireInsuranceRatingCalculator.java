@@ -2,8 +2,8 @@ package jp.co.is.gw.rating.engine.fire;
 
 import java.math.BigDecimal;
 
-import jp.co.is.gw.rating.engine.RatingContext;
-import jp.co.is.gw.rating.engine.RatingSpec;
+import jp.co.is.gw.rating.engine.common.RatingContext;
+import jp.co.is.gw.rating.engine.common.RatingSpec;
 
 /**
  * 火災保険料計算

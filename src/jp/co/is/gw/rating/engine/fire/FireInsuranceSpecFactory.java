@@ -1,9 +1,9 @@
 package jp.co.is.gw.rating.engine.fire;
 
-import jp.co.is.gw.rating.engine.RatingContext;
-import jp.co.is.gw.rating.engine.RatingSpec;
-import jp.co.is.gw.rating.engine.constants.Incidental;
-import jp.co.is.gw.rating.engine.constants.RangeDiscountType;
+import jp.co.is.gw.rating.engine.common.RatingContext;
+import jp.co.is.gw.rating.engine.common.RatingSpec;
+import jp.co.is.gw.rating.engine.common.constants.Incidental;
+import jp.co.is.gw.rating.engine.common.constants.RangeDiscountType;
 import jp.co.is.gw.rating.engine.fire.impl.BuildingBasicRatingSpec;
 import jp.co.is.gw.rating.engine.fire.impl.FinalBuildingRatingSpec;
 import jp.co.is.gw.rating.engine.fire.impl.RangeDiscountRatingSpec;
@@ -28,7 +28,7 @@ public class FireInsuranceSpecFactory {
 	 */
 	public static RatingSpec createRatingSpecOfBuilding(RatingContext context) {
 
-		RatingSpec spec = new BuildingBasicRatingSpec(null, context);
+		RatingSpec spec = new BuildingBasicRatingSpec(context);
 
 		if (context.getWindHailstoneDisaster() == Incidental.YES) {
 			spec = new WindHailstoneDisasterRatingSpec(spec, context);

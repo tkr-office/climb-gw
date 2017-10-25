@@ -5,10 +5,10 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import jp.co.is.gw.rating.engine.RatingContext;
-import jp.co.is.gw.rating.engine.RatingSpec;
-import jp.co.is.gw.rating.engine.constants.Incidental;
-import jp.co.is.gw.rating.engine.constants.RangeDiscountType;
+import jp.co.is.gw.rating.engine.common.RatingContext;
+import jp.co.is.gw.rating.engine.common.RatingSpec;
+import jp.co.is.gw.rating.engine.common.constants.Incidental;
+import jp.co.is.gw.rating.engine.common.constants.RangeDiscountType;
 import jp.co.is.gw.rating.engine.fire.impl.AbstractRatingSpec;
 import jp.co.is.gw.rating.engine.fire.impl.BuildingBasicRatingSpec;
 import jp.co.is.gw.rating.engine.fire.impl.RangeDiscountRatingSpec;

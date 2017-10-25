@@ -2,8 +2,7 @@ package jp.co.is.gw.rating.engine.fire.impl;
 
 import java.math.BigDecimal;
 
-import jp.co.is.gw.rating.engine.RatingContext;
-import jp.co.is.gw.rating.engine.RatingSpec;
+import jp.co.is.gw.rating.engine.common.RatingContext;
 
 /**
  * 建物基本料率仕様
@@ -13,8 +12,8 @@ import jp.co.is.gw.rating.engine.RatingSpec;
  */
 public class BuildingBasicRatingSpec extends AbstractRatingSpec {
 
-	public BuildingBasicRatingSpec(RatingSpec dependRating, RatingContext context) {
-		super(dependRating, context);
+	public BuildingBasicRatingSpec(RatingContext context) {
+		super(context);
 	}
 
 	/**

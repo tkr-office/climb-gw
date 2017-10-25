@@ -10,8 +10,8 @@ import org.easymock.EasyMockSupport;
 import org.junit.Before;
 import org.junit.Test;
 
-import jp.co.is.gw.rating.engine.RatingContext;
-import jp.co.is.gw.rating.engine.RatingSpec;
+import jp.co.is.gw.rating.engine.common.RatingContext;
+import jp.co.is.gw.rating.engine.common.RatingSpec;
 
 public class AbstractRatingSpecTest extends EasyMockSupport {
 

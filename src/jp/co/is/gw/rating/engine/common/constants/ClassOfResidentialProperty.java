@@ -1,4 +1,4 @@
-package jp.co.is.gw.rating.engine.constants;
+package jp.co.is.gw.rating.engine.common.constants;
 
 /**
  *
@@ -9,10 +9,10 @@ package jp.co.is.gw.rating.engine.constants;
  */
 public enum ClassOfResidentialProperty {
 
-	ClassA("A構造"),						//A構造
-	ClassB("B構造"),						//B構造
-	ClassC("C構造"),						//C構造
-	ClassD("D構造");						//D構造
+	NotSpecified("指定なし"),				//指定なし
+	ClassT("T構造"),						//T構造
+	ClassH("H構造"),						//H構造
+	ClassM("M構造");						//M構造
 
 	private String displayName;
 

@@ -1,4 +1,4 @@
-package jp.co.is.gw.rating.engine;
+package jp.co.is.gw.rating.engine.common;
 
 import java.math.BigDecimal;
 
