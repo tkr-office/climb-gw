@@ -1,9 +1,12 @@
 package jp.co.is.gw.rating.engine.fire.impl;
 
 import java.math.BigDecimal;
+import java.math.MathContext;
+import java.math.RoundingMode;
 
 import jp.co.is.gw.rating.engine.common.RatingContext;
 import jp.co.is.gw.rating.engine.common.RatingSpec;
+import jp.co.is.gw.rating.engine.fire.rate.RateRepository;
 
 /**
  * 風・雹災仕様
@@ -27,9 +30,11 @@ public class WindHailstoneDisasterRatingSpec extends AbstractRatingSpec {
 	@Override
 	public BigDecimal apply() {
 
-		BigDecimal rating = getDependRate();
+		return getDependRate().multiply(rate(), new MathContext(4, RoundingMode.DOWN));
+	}
 
-		return null;
+	private BigDecimal rate() {
+		return RateRepository.WIND_HAILSTONE_DISASTER_RATE.getRate(context());
 	}
 
 }

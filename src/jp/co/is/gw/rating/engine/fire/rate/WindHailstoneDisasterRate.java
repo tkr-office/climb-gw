@@ -16,8 +16,7 @@ public class WindHailstoneDisasterRate implements GetRate {
 
 	@Override
 	public BigDecimal getRate(RatingContext contest) {
-		// TODO 自動生成されたメソッド・スタブ
-		return null;
+		return new BigDecimal(1.10);
 	}
 
 }

@@ -2,7 +2,11 @@ package jp.co.is.gw.rating.engine.fire.impl;
 
 import java.math.BigDecimal;
 
+import com.google.common.base.Preconditions;
+
 import jp.co.is.gw.rating.engine.common.RatingContext;
+import jp.co.is.gw.rating.engine.fire.precondition.PreConditonsOfFireInsuranceRating;
+import jp.co.is.gw.rating.engine.fire.rate.RateRepository;
 
 /**
  * 建物基本料率仕様
@@ -25,8 +29,9 @@ public class BuildingBasicRatingSpec extends AbstractRatingSpec {
 	@Override
 	public BigDecimal apply() {
 
-		// TODO 自動生成されたメソッド・スタブ
-		return null;
+		Preconditions.checkArgument(PreConditonsOfFireInsuranceRating.ratingOfResidentialProperty(context()).isMatch());
+
+		return RateRepository.BASE_RATE_OF_RESIDENTIAL_PROPERTY.getRate(context());
 	}
 
 }
