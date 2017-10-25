@@ -6,23 +6,23 @@ import jp.co.is.gw.rating.engine.RatingContext;
 import jp.co.is.gw.rating.engine.RatingSpec;
 
 /**
- * 割増引き
+ * 水災仕様
  *
  *
  * @author t-kubo
  *
  */
-public class Discount extends AbstractRatingSpec {
+public class WaterDisasterRatingSpec extends AbstractRatingSpec {
 
-	public Discount(RatingSpec dependRating, RatingContext context) {
-		super(dependRating, context);
+	public WaterDisasterRatingSpec(RatingSpec depend, RatingContext context) {
+		super(depend, context);
 	}
 
 	/**
-	 * 割増引きを適用する
+	 * 水災の保険料率を適用する
 	 *
 	 *
-	 * @return 割増引き適用後の料率
+	 * @return 水災適用後の料率
 	 */
 	@Override
 	public BigDecimal apply() {

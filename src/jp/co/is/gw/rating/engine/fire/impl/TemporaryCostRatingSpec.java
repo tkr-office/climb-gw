@@ -12,9 +12,9 @@ import jp.co.is.gw.rating.engine.RatingSpec;
  * @author t-kubo
  *
  */
-public class TemporaryCost extends AbstractRatingSpec {
+public class TemporaryCostRatingSpec extends AbstractRatingSpec {
 
-	public TemporaryCost(RatingSpec depend, RatingContext context) {
+	public TemporaryCostRatingSpec(RatingSpec depend, RatingContext context) {
 		super(depend, context);
 	}
 

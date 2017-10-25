@@ -6,23 +6,23 @@ import jp.co.is.gw.rating.engine.RatingContext;
 import jp.co.is.gw.rating.engine.RatingSpec;
 
 /**
- * 風・雹災仕様
+ * 保険金額
  *
  *
  * @author t-kubo
  *
  */
-public class WindHailstoneDisaster extends AbstractRatingSpec {
+public class InsuranceAmountSpec extends AbstractRatingSpec {
 
-	public WindHailstoneDisaster(RatingSpec depend, RatingContext context) {
+	public InsuranceAmountSpec(RatingSpec depend, RatingContext context) {
 		super(depend, context);
 	}
 
 	/**
-	 * 風・雹災の保険料率を適用する
+	 * 保険金額を適用する
 	 *
 	 *
-	 * @return 風・雹災適用後の料率
+	 * @return 保険金額適用後の保険料
 	 */
 	@Override
 	public BigDecimal apply() {

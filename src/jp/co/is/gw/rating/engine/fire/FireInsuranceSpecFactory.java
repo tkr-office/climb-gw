@@ -5,10 +5,11 @@ import jp.co.is.gw.rating.engine.RatingSpec;
 import jp.co.is.gw.rating.engine.constants.Incidental;
 import jp.co.is.gw.rating.engine.constants.RangeDiscountType;
 import jp.co.is.gw.rating.engine.fire.impl.BuildingBasicRatingSpec;
-import jp.co.is.gw.rating.engine.fire.impl.FinalBuildingRating;
-import jp.co.is.gw.rating.engine.fire.impl.TemporaryCost;
-import jp.co.is.gw.rating.engine.fire.impl.WaterDisaster;
-import jp.co.is.gw.rating.engine.fire.impl.WindHailstoneDisaster;
+import jp.co.is.gw.rating.engine.fire.impl.FinalBuildingRatingSpec;
+import jp.co.is.gw.rating.engine.fire.impl.RangeDiscountRatingSpec;
+import jp.co.is.gw.rating.engine.fire.impl.TemporaryCostRatingSpec;
+import jp.co.is.gw.rating.engine.fire.impl.WaterDisasterRatingSpec;
+import jp.co.is.gw.rating.engine.fire.impl.WindHailstoneDisasterRatingSpec;
 
 /**
  * 火災保険料算出仕様ファクトリ
@@ -30,22 +31,22 @@ public class FireInsuranceSpecFactory {
 		RatingSpec spec = new BuildingBasicRatingSpec(null, context);
 
 		if (context.getWindHailstoneDisaster() == Incidental.YES) {
-			spec = new WindHailstoneDisaster(spec, context);
+			spec = new WindHailstoneDisasterRatingSpec(spec, context);
 		}
 
 		if (context.getWaterDisaster() == Incidental.YES) {
-			spec = new WaterDisaster(spec, context);
+			spec = new WaterDisasterRatingSpec(spec, context);
 		}
 
 		if (context.getTemporaryCost() == Incidental.YES) {
-			spec = new TemporaryCost(spec, context);
+			spec = new TemporaryCostRatingSpec(spec, context);
 		}
 
 		if (context.getRangeDiscountType() != RangeDiscountType.None) {
-			spec = new TemporaryCost(spec, context);
+			spec = new RangeDiscountRatingSpec(spec, context);
 		}
 
-		spec = new FinalBuildingRating(spec, context);
+		spec = new FinalBuildingRatingSpec(spec, context);
 
 		return spec;
 	}
