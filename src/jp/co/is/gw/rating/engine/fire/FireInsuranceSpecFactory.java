@@ -6,6 +6,7 @@ import jp.co.is.gw.rating.engine.common.constants.Incidental;
 import jp.co.is.gw.rating.engine.common.constants.RangeDiscountType;
 import jp.co.is.gw.rating.engine.fire.impl.BuildingBasicRatingSpec;
 import jp.co.is.gw.rating.engine.fire.impl.FinalBuildingRatingSpec;
+import jp.co.is.gw.rating.engine.fire.impl.Precision4DigitsSpec;
 import jp.co.is.gw.rating.engine.fire.impl.RangeDiscountRatingSpec;
 import jp.co.is.gw.rating.engine.fire.impl.TemporaryCostRatingSpec;
 import jp.co.is.gw.rating.engine.fire.impl.WaterDisasterRatingSpec;
@@ -41,6 +42,8 @@ public class FireInsuranceSpecFactory {
 		if (context.getTemporaryCost() == Incidental.YES) {
 			spec = new TemporaryCostRatingSpec(spec, context);
 		}
+
+		spec = new Precision4DigitsSpec(spec, context);
 
 		if (context.getRangeDiscountType() != RangeDiscountType.None) {
 			spec = new RangeDiscountRatingSpec(spec, context);

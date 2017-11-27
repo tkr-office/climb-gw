@@ -1,12 +1,12 @@
 package jp.co.is.gw.rating.engine.fire.impl;
 
+import static com.google.common.base.Preconditions.*;
+import static jp.co.is.gw.rating.engine.fire.precondition.PreConditonsOfFireInsuranceRating.*;
+import static jp.co.is.gw.rating.engine.fire.rate.RateRepository.*;
+
 import java.math.BigDecimal;
 
-import com.google.common.base.Preconditions;
-
 import jp.co.is.gw.rating.engine.common.RatingContext;
-import jp.co.is.gw.rating.engine.fire.precondition.PreConditonsOfFireInsuranceRating;
-import jp.co.is.gw.rating.engine.fire.rate.RateRepository;
 
 /**
  * 建物基本料率仕様
@@ -29,9 +29,9 @@ public class BuildingBasicRatingSpec extends AbstractRatingSpec {
 	@Override
 	public BigDecimal apply() {
 
-		Preconditions.checkArgument(PreConditonsOfFireInsuranceRating.ratingOfResidentialProperty(context()).isMatch());
+		checkArgument(ratingOfResidentialProperty(context()).isMatch());
 
-		return RateRepository.BASE_RATE_OF_RESIDENTIAL_PROPERTY.getRate(context());
+		return BASE_RATE_OF_RESIDENTIAL_PROPERTY.getRate(context());
 	}
 
 }

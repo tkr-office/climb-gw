@@ -25,6 +25,20 @@ public class BuildingBasicRatingSpecTest {
 		testee = new BuildingBasicRatingSpec(context);
 	}
 
+	/**
+	 * 建物物件に建物基本料率算出処理のユニットテスト<br/>
+	 * <pre>
+	 * 前提条件
+	 * <li>物件種別：住宅物件</li>
+	 * <li>所在地：札幌</li>
+	 * <li>構造級別：H構造</li>
+	 * </pre>
+	 *
+	 * <pre>
+	 * 確認項目
+	 * <li>保険料率：1.45(建物基本料率)となること</li>
+	 * </pre>
+	 */
 	@Test
 	public void testApply() {
 

@@ -12,7 +12,7 @@ import jp.co.is.gw.rating.engine.common.RatingSpec;
  * @author t-kubo
  *
  */
-public class FinalBuildingRatingSpec extends AbstractRatingSpec {
+public class FinalBuildingRatingSpec extends Precision2DigitsSpec {
 
 	public FinalBuildingRatingSpec(RatingSpec depend, RatingContext context) {
 		super(depend, context);
@@ -27,9 +27,7 @@ public class FinalBuildingRatingSpec extends AbstractRatingSpec {
 	@Override
 	public BigDecimal apply() {
 
-		BigDecimal rating = getDependRate();
-
-		return null;
+		return super.apply();
 	}
 
 }

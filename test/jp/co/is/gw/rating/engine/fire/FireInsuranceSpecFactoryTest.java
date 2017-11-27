@@ -26,6 +26,7 @@ public class FireInsuranceSpecFactoryTest {
 
 		RatingSpec ratingSpec = FireInsuranceSpecFactory.createRatingSpecOfBuilding(new RatingContext());
 		RatingSpec depended = ((AbstractRatingSpec) ratingSpec).getDependRating();
+		depended = ((AbstractRatingSpec) depended).getDependRating();
 
 		assertThat(depended instanceof BuildingBasicRatingSpec, is(true));
 
@@ -42,6 +43,7 @@ public class FireInsuranceSpecFactoryTest {
 
 		RatingSpec ratingSpec = FireInsuranceSpecFactory.createRatingSpecOfBuilding(context);
 		RatingSpec depended = ((AbstractRatingSpec) ratingSpec).getDependRating();
+		depended = ((AbstractRatingSpec) depended).getDependRating();
 
 		assertThat(depended instanceof WindHailstoneDisasterRatingSpec, is(true));
 
@@ -58,6 +60,7 @@ public class FireInsuranceSpecFactoryTest {
 
 		RatingSpec ratingSpec = FireInsuranceSpecFactory.createRatingSpecOfBuilding(context);
 		RatingSpec depended = ((AbstractRatingSpec) ratingSpec).getDependRating();
+		depended = ((AbstractRatingSpec) depended).getDependRating();
 
 		assertThat(depended instanceof WaterDisasterRatingSpec, is(true));
 
@@ -74,6 +77,7 @@ public class FireInsuranceSpecFactoryTest {
 
 		RatingSpec ratingSpec = FireInsuranceSpecFactory.createRatingSpecOfBuilding(context);
 		RatingSpec depended = ((AbstractRatingSpec) ratingSpec).getDependRating();
+		depended = ((AbstractRatingSpec) depended).getDependRating();
 
 		assertThat(depended instanceof TemporaryCostRatingSpec, is(true));
 

@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 
 import jp.co.is.gw.rating.engine.common.RatingContext;
 import jp.co.is.gw.rating.engine.common.RatingSpec;
+import jp.co.is.gw.rating.engine.fire.rate.RateRepository;
 
 /**
  * 範囲割引
@@ -27,9 +28,11 @@ public class RangeDiscountRatingSpec extends AbstractRatingSpec {
 	@Override
 	public BigDecimal apply() {
 
-		BigDecimal rating = getDependRate();
+		return getDependRate().multiply(new BigDecimal(1.00).subtract(rate()));
+	}
 
-		return null;
+	private BigDecimal rate() {
+		return RateRepository.RANGE_DISCOUNT_RATE.getRate(context());
 	}
 
 }

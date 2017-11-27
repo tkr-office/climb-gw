@@ -3,7 +3,6 @@ package jp.co.is.gw.rating.engine.fire;
 import java.math.BigDecimal;
 
 import jp.co.is.gw.rating.engine.common.RatingContext;
-import jp.co.is.gw.rating.engine.common.RatingSpec;
 
 /**
  * 火災保険料計算
@@ -26,10 +25,7 @@ public class FireInsuranceRatingCalculator {
 	 */
 	public BigDecimal calculate() {
 
-		RatingSpec spaec = FireInsuranceSpecFactory.createRatingSpecOfBuilding(context);
-		BigDecimal rate = spaec.apply();
-
-		return null;
+		return FireInsuranceSpecFactory.createRatingSpecOfBuilding(context).apply();
 	}
 
 }
