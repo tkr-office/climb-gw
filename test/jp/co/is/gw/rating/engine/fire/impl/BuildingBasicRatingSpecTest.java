@@ -38,9 +38,10 @@ public class BuildingBasicRatingSpecTest {
 	 * 確認項目
 	 * <li>保険料率：1.45(建物基本料率)となること</li>
 	 * </pre>
+	 * @throws Exception
 	 */
 	@Test
-	public void testApply() {
+	public void testApply() throws Exception {
 
 		context.setBuildingType(BuildingType.ResidentialProperty);
 		context.setLocation(Location.Sapporo);

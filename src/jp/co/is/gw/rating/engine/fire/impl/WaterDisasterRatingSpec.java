@@ -24,9 +24,10 @@ public class WaterDisasterRatingSpec extends AbstractRatingSpec {
 	 *
 	 *
 	 * @return 水災適用後の料率
+	 * @throws Exception
 	 */
 	@Override
-	public BigDecimal apply() {
+	public BigDecimal apply() throws Exception {
 
 		return getDependRate().multiply(rate());
 	}

@@ -35,8 +35,9 @@ public abstract class AbstractRatingSpec implements RatingSpec {
 	 * この保険料率の適用元となる保険料率を取得する
 	 *
 	 * @return 適用元となる保険料率
+	 * @throws Exception
 	 */
-	protected BigDecimal getDependRate() {
+	protected BigDecimal getDependRate() throws Exception {
 
 		if (dependRating == null) {
 			throw new AssertionError("Depend RatingSpec is not specified/");

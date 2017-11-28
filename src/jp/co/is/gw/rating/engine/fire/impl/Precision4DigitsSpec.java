@@ -24,9 +24,10 @@ public class Precision4DigitsSpec extends AbstractRatingSpec {
 	 * 保険料率を小数点以下4桁で丸める。
 	 *
 	 * @return 丸め後の保険料率
+	 * @throws Exception
 	 */
 	@Override
-	public BigDecimal apply() {
+	public BigDecimal apply() throws Exception {
 		return getDependRate().round(new MathContext(4, RoundingMode.DOWN));
 	}
 

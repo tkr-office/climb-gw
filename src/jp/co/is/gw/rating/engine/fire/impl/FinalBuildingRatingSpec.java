@@ -23,9 +23,10 @@ public class FinalBuildingRatingSpec extends Precision2DigitsSpec {
 	 *
 	 *
 	 * @return 建物最終適用料率
+	 * @throws Exception
 	 */
 	@Override
-	public BigDecimal apply() {
+	public BigDecimal apply() throws Exception {
 
 		return super.apply();
 	}

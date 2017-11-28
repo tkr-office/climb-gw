@@ -40,9 +40,10 @@ public class WaterDisasterRatingSpecTest {
 	 * 確認項目
 	 * <li>保険料率：1.45(建物基本料率) × 1.20(水災保険料率) (丸めなし)の計算結果と同値となること</li>
 	 * </pre>
+	 * @throws Exception
 	 */
 	@Test
-	public void testApply() {
+	public void testApply() throws Exception {
 
 		context.setBuildingType(BuildingType.ResidentialProperty);
 		context.setLocation(Location.Sapporo);

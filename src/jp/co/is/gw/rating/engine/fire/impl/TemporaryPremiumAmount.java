@@ -20,9 +20,10 @@ public class TemporaryPremiumAmount extends AbstractRatingSpec {
 	/**
 	 * 暫定保険料を算出する。<br/>
 	 * （保険金額 × 最終適用料率） ÷ １０００
+	 * @throws Exception
 	 */
 	@Override
-	public BigDecimal apply() {
+	public BigDecimal apply() throws Exception {
 
 		return context().getBuildingInsurance().multiply(getDependRate()).divide(new BigDecimal(1000));
 	}

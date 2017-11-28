@@ -32,7 +32,7 @@ public class AbstractRatingSpecTest extends EasyMockSupport {
 	}
 
 	@Test
-	public void testGetDependRate() {
+	public void testGetDependRate() throws Exception {
 
 		expect(mockedRatingSpec.apply()).andReturn(EXPECTED_VALUE);
 

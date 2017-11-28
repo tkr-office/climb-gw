@@ -40,9 +40,10 @@ public class TemporaryCostRatingSpecTest {
 	 * 確認項目
 	 * <li>保険料率：1.45(建物基本料率) × 1.03(臨時費用保険料率) (丸めなし)の計算結果と同値となること</li>
 	 * </pre>
+	 * @throws Exception
 	 */
 	@Test
-	public void testApply() {
+	public void testApply() throws Exception {
 
 		context.setBuildingType(BuildingType.ResidentialProperty);
 		context.setLocation(Location.Sapporo);

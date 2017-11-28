@@ -17,6 +17,6 @@ public interface RatingSpec {
 	 *
 	 * @return 保険料率
 	 */
-	BigDecimal apply();
+	BigDecimal apply() throws Exception;
 
 }

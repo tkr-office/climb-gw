@@ -22,8 +22,9 @@ public class FireInsuranceRatingCalculator {
 	 * 火災保険料を算出する
 	 *
 	 * @return 火災保険料
+	 * @throws Exception
 	 */
-	public BigDecimal calculate() {
+	public BigDecimal calculate() throws Exception {
 
 		return FireInsuranceSpecFactory.createRatingSpecOfBuilding(context).apply();
 	}

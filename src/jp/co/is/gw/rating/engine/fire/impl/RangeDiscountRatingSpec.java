@@ -24,9 +24,10 @@ public class RangeDiscountRatingSpec extends AbstractRatingSpec {
 	 *
 	 *
 	 * @return 範囲割引適用後の料率
+	 * @throws Exception
 	 */
 	@Override
-	public BigDecimal apply() {
+	public BigDecimal apply() throws Exception {
 
 		return getDependRate().multiply(new BigDecimal(1.00).subtract(rate()));
 	}
