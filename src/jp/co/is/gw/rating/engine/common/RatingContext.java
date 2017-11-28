@@ -1,6 +1,7 @@
 package jp.co.is.gw.rating.engine.common;
 
 import java.math.BigDecimal;
+import java.util.Calendar;
 
 import jp.co.is.gw.rating.engine.common.constants.BuildingType;
 import jp.co.is.gw.rating.engine.common.constants.ClassOfGeneralProperty;
@@ -20,6 +21,10 @@ import jp.co.is.gw.rating.engine.common.constants.RangeDiscountType;
  */
 public class RatingContext {
 
+	private Calendar policyStartDate; // 保険始期日
+	private Calendar policyEndDate;   // 保険終期日
+	private int policyPeriodYears;    // 保険期間(年)
+	private int policyPeriodMonths;    // 保険期間(月/短期用)
 	private BigDecimal buildingInsurance = BigDecimal.ZERO; // 建物保険金額
 	private BuildingType buildingType = BuildingType.NotSpecified; //建物物件種別
 	private ClassOfGeneralProperty classOfGeneralProperty = ClassOfGeneralProperty.NotSpecified; // 一般物件における構造級別
@@ -30,6 +35,38 @@ public class RatingContext {
 	private IntegratedPayment integratedPayment = IntegratedPayment.NotSpecified; // 払込方法
 	private RangeDiscountType rangeDiscountType = RangeDiscountType.None; // 範囲割引
 	private Location location = Location.NotSpecified; // 物件所在地
+
+	public Calendar getPolicyStartDate() {
+		return policyStartDate;
+	}
+
+	public void setPolicyStartDate(Calendar policyStartDate) {
+		this.policyStartDate = policyStartDate;
+	}
+
+	public Calendar getPolicyEndDate() {
+		return policyEndDate;
+	}
+
+	public void setPolicyEndDate(Calendar policyEndDate) {
+		this.policyEndDate = policyEndDate;
+	}
+
+	public int getPolicyPeriodYears() {
+		return policyPeriodYears;
+	}
+
+	public void setPolicyPeriodYears(int policyPeriodYears) {
+		this.policyPeriodYears = policyPeriodYears;
+	}
+
+	public int getPolicyPeriodMonths() {
+		return policyPeriodMonths;
+	}
+
+	public void setPolicyPeriodMonths(int policyPeriodMonths) {
+		this.policyPeriodMonths = policyPeriodMonths;
+	}
 
 	public BigDecimal getBuildingInsurance() {
 		return buildingInsurance;

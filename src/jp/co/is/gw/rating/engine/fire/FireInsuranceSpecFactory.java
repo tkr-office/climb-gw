@@ -9,6 +9,7 @@ import jp.co.is.gw.rating.engine.fire.impl.FinalBuildingRatingSpec;
 import jp.co.is.gw.rating.engine.fire.impl.Precision4DigitsSpec;
 import jp.co.is.gw.rating.engine.fire.impl.RangeDiscountRatingSpec;
 import jp.co.is.gw.rating.engine.fire.impl.TemporaryCostRatingSpec;
+import jp.co.is.gw.rating.engine.fire.impl.TemporaryPremiumAmount;
 import jp.co.is.gw.rating.engine.fire.impl.WaterDisasterRatingSpec;
 import jp.co.is.gw.rating.engine.fire.impl.WindHailstoneDisasterRatingSpec;
 
@@ -50,6 +51,7 @@ public class FireInsuranceSpecFactory {
 		}
 
 		spec = new FinalBuildingRatingSpec(spec, context);
+		spec = new TemporaryPremiumAmount(spec, context);
 
 		return spec;
 	}
