@@ -10,7 +10,6 @@ public final class RateRepository {
 	public static final GetRate RANGE_DISCOUNT_RATE = new RangeDiscountRate();
 	public static final GetRate TEMPORARY_COST_RATE = new TemporaryCostRate();
 	public static final GetRate LONG_TERM_FACTOR = new LongTermFactor();
-	public static final GetRate SHORT_TERM_FACTOR = new ShortTermFactor();
 	public static final GetRate INTEGRATED_PAYMENT_FACTOR = new IntegratedPaymentFactor();
 
 }

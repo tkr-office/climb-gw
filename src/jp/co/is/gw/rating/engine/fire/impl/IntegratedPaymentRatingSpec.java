@@ -75,7 +75,8 @@ public class IntegratedPaymentRatingSpec extends AbstractRatingSpec {
 	// 保険期間が1年未満
 	if (context.getPolicyPeriodMonths() >= 1) {
 	    return premiumAmount.//
-		    multiply(SHORT_TERM_FACTOR.getRate(context)).//
+		    multiply(new BigDecimal(context.getPolicyPeriodMonths())).//
+		    divide(new BigDecimal(12)).//
 		    setScale(-1, RoundingMode.FLOOR);
 	}
 
