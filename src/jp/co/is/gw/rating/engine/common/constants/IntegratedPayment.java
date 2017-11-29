@@ -41,4 +41,10 @@ public enum IntegratedPayment {
 	public int getPaymentNum() {
 		return paymentNum;
 	}
+
+	@Override
+	public String toString() {
+	    return getDisplayName();
+	}
+
 }

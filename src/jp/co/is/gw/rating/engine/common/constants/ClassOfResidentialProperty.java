@@ -29,4 +29,9 @@ public enum ClassOfResidentialProperty {
 		return displayName;
 	}
 
+	@Override
+	public String toString() {
+	    return getDisplayName();
+	}
+
 }

@@ -34,4 +34,9 @@ public enum Location {
 		return displayName;
 	}
 
+	@Override
+	public String toString() {
+	    return getDisplayName();
+	}
+
 }

@@ -28,4 +28,11 @@ public enum BuildingType {
 		return displayName;
 	}
 
+	@Override
+	public String toString() {
+		return getDisplayName();
+	}
+
+
+
 }

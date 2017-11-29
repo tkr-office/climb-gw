@@ -31,4 +31,9 @@ public enum RangeDiscountType {
 		return displayName;
 	}
 
+	@Override
+	public String toString() {
+	    return getDisplayName();
+	}
+
 }
