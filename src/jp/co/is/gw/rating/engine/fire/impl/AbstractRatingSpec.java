@@ -40,7 +40,7 @@ public abstract class AbstractRatingSpec implements RatingSpec {
 	protected BigDecimal getDependRate() throws Exception {
 
 		if (dependRating == null) {
-			throw new AssertionError("Depend RatingSpec is not specified/");
+			throw new AssertionError("Depend RatingSpec is not specified.");
 		}
 
 		return dependRating.apply();

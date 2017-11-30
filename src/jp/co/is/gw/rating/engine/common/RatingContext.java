@@ -148,4 +148,14 @@ public class RatingContext {
 		this.location = location;
 	}
 
+	@Override
+	    public String toString() {
+		return "RatingContext [policyStartDate=" + policyStartDate + ", policyEndDate=" + policyEndDate
+			+ ", policyPeriodYears=" + policyPeriodYears + ", policyPeriodMonths=" + policyPeriodMonths
+			+ ", buildingInsurance=" + buildingInsurance + ", buildingType=" + buildingType
+			+ ", classOfGeneralProperty=" + classOfGeneralProperty + ", classOfResidentialProperty="
+			+ classOfResidentialProperty + ", windHailstoneDisaster=" + windHailstoneDisaster + ", waterDisaster="
+			+ waterDisaster + ", temporaryCost=" + temporaryCost + ", integratedPayment=" + integratedPayment
+			+ ", rangeDiscountType=" + rangeDiscountType + ", location=" + location + "]";
+	    }
 }

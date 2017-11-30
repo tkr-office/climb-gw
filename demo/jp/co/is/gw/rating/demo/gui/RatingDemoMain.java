@@ -10,7 +10,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
-import java.text.SimpleDateFormat;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
@@ -26,11 +25,14 @@ import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
+import javax.swing.text.MaskFormatter;
 
+import jp.co.is.gw.rating.demo.gui.listeners.MessageCloseButtonActionListener;
+import jp.co.is.gw.rating.demo.gui.listeners.StartDateFocusAdapter;
+import jp.co.is.gw.rating.demo.gui.listeners.TermYearsFocusAdapter;
 import jp.co.is.gw.rating.engine.common.RatingContext;
 import jp.co.is.gw.rating.engine.common.constants.BuildingType;
 import jp.co.is.gw.rating.engine.common.constants.ClassOfResidentialProperty;
-import jp.co.is.gw.rating.engine.common.constants.Incidental;
 import jp.co.is.gw.rating.engine.common.constants.IntegratedPayment;
 import jp.co.is.gw.rating.engine.common.constants.Location;
 import jp.co.is.gw.rating.engine.common.constants.RangeDiscountType;
@@ -54,6 +56,8 @@ public class RatingDemoMain extends JFrame {
     private JFormattedTextField insuranceAmountInput;
     private JComboBox<IntegratedPayment> integratedPaymentList;
     private JFormattedTextField premiumAmountOutput;
+    private final JLabel messageLabel = new JLabel("");
+    private JPanel messageAreaPanel;
 
     /**
      * Launch the application.
@@ -74,19 +78,19 @@ public class RatingDemoMain extends JFrame {
     /**
      * Create the frame.
      */
-    public RatingDemoMain() {
+    public RatingDemoMain() throws Exception {
 	setBackground(Color.WHITE);
 	setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	setBounds(100, 100, 676, 485);
+	setBounds(100, 100, 689, 535);
 	contentPane = new JPanel();
 	contentPane.setBackground(Color.WHITE);
 	contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 	setContentPane(contentPane);
 	contentPane.setLayout(new BorderLayout(0, 0));
 
-	JLabel mainTitleLabel = new JLabel("メインタイトル");
+	JLabel mainTitleLabel = new JLabel("保険料見積もりデモ");
 	mainTitleLabel.setOpaque(true);
-	mainTitleLabel.setFont(new Font("MS UI Gothic", Font.ITALIC, 12));
+	mainTitleLabel.setFont(new Font("MS UI Gothic", Font.ITALIC, 14));
 	mainTitleLabel.setBackground(new Color(173, 216, 230));
 	contentPane.add(mainTitleLabel, BorderLayout.NORTH);
 
@@ -110,68 +114,74 @@ public class RatingDemoMain extends JFrame {
 	firePolicyPanel.add(filePolicyTitleLabel);
 
 	JLabel startDateLabel = new JLabel("保険始期日");
-	startDateLabel.setBounds(19, 54, 60, 13);
+	startDateLabel.setBounds(19, 54, 89, 13);
 	firePolicyPanel.add(startDateLabel);
 
 	JLabel endDateLabel = new JLabel("保険終期日");
-	endDateLabel.setBounds(276, 54, 67, 13);
+	endDateLabel.setBounds(365, 55, 89, 13);
 	firePolicyPanel.add(endDateLabel);
 
 	JLabel policyTerm = new JLabel("契約期間");
-	policyTerm.setBounds(19, 88, 60, 13);
+	policyTerm.setBounds(19, 88, 89, 13);
 	firePolicyPanel.add(policyTerm);
+
+	MaskFormatter sdf1 = new MaskFormatter("####/##/##");
+	sdf1.setPlaceholderCharacter('_');
+	startDateInput = new JFormattedTextField(sdf1);
+	startDateInput.setBounds(145, 54, 136, 19);
+	firePolicyPanel.add(startDateInput);
+
+	MaskFormatter sdf2 = new MaskFormatter("####/##/##");
+	sdf2.setPlaceholderCharacter('_');
+	endDateInput = new JFormattedTextField(sdf2);
+	endDateInput.setOpaque(false);
+	endDateInput.setEditable(false);
+	endDateInput.setBounds(497, 54, 136, 19);
+	firePolicyPanel.add(endDateInput);
 
 	termYearsInput = new JTextField();
 	termYearsInput.setColumns(10);
 	termYearsInput.setBorder(UIManager.getBorder("TextField.border"));
-	termYearsInput.setBounds(87, 85, 29, 19);
+	termYearsInput.setBounds(144, 88, 29, 19);
+	termYearsInput.setText("1");
 	firePolicyPanel.add(termYearsInput);
 
 	JLabel termYearsLabel = new JLabel("年");
-	termYearsLabel.setBounds(123, 88, 12, 13);
+	termYearsLabel.setBounds(187, 88, 24, 13);
 	firePolicyPanel.add(termYearsLabel);
 
 	termMonthsInput = new JTextField();
 	termMonthsInput.setColumns(10);
 	termMonthsInput.setBorder(UIManager.getBorder("TextField.border"));
-	termMonthsInput.setBounds(142, 85, 29, 19);
+	termMonthsInput.setBounds(223, 88, 29, 19);
+	termMonthsInput.setText("0");
 	firePolicyPanel.add(termMonthsInput);
 
 	JLabel termMonthsLabel = new JLabel("ヶ月");
-	termMonthsLabel.setBounds(183, 88, 20, 13);
+	termMonthsLabel.setBounds(264, 91, 29, 13);
 	firePolicyPanel.add(termMonthsLabel);
 
 	JLabel buildingTypeLabel = new JLabel("物件種別");
-	buildingTypeLabel.setBounds(19, 123, 60, 13);
+	buildingTypeLabel.setBounds(19, 123, 89, 13);
 	firePolicyPanel.add(buildingTypeLabel);
 
 	buildingTypeList = new JComboBox<BuildingType>();
 	buildingTypeList.setBackground(new Color(255, 255, 255));
 	buildingTypeList.setModel(new DefaultComboBoxModel<BuildingType>(BuildingType.values()));
 	buildingTypeList.setSize(new Dimension(10, 0));
-	buildingTypeList.setBounds(87, 120, 96, 19);
+	buildingTypeList.setBounds(144, 123, 137, 19);
 	firePolicyPanel.add(buildingTypeList);
 
 	JLabel locationLabel = new JLabel("所在地");
-	locationLabel.setBounds(19, 159, 60, 13);
+	locationLabel.setBounds(19, 159, 89, 13);
 	firePolicyPanel.add(locationLabel);
 
 	locationList = new JComboBox<Location>();
 	locationList.setModel(new DefaultComboBoxModel<Location>(Location.values()));
 	locationList.setSize(new Dimension(10, 0));
 	locationList.setBackground(Color.WHITE);
-	locationList.setBounds(87, 156, 96, 19);
+	locationList.setBounds(144, 159, 137, 19);
 	firePolicyPanel.add(locationList);
-
-	SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy/MM/dd");
-	startDateInput = new JFormattedTextField(sdf1);
-	startDateInput.setBounds(88, 51, 111, 19);
-	firePolicyPanel.add(startDateInput);
-
-	SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy/MM/dd");
-	endDateInput = new JFormattedTextField(sdf2);
-	endDateInput.setBounds(343, 51, 111, 19);
-	firePolicyPanel.add(endDateInput);
 
 	JPanel panel = new JPanel();
 	panel.setBackground(new Color(255, 239, 213));
@@ -179,7 +189,7 @@ public class RatingDemoMain extends JFrame {
 		new TitledBorder(new LineBorder(new Color(0, 0, 0)), "", TitledBorder.LEADING, TitledBorder.TOP, null,
 			new Color(0, 0, 0)),
 		"\u7279\u7D04", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
-	panel.setBounds(12, 195, 191, 80);
+	panel.setBounds(12, 195, 248, 80);
 	firePolicyPanel.add(panel);
 	panel.setLayout(new GridLayout(0, 1, 0, 0));
 
@@ -196,7 +206,7 @@ public class RatingDemoMain extends JFrame {
 	panel.add(temporaryCost);
 
 	JLabel classLabel = new JLabel("構造級別");
-	classLabel.setBounds(276, 123, 60, 13);
+	classLabel.setBounds(365, 124, 89, 13);
 	firePolicyPanel.add(classLabel);
 
 	classOfProperty = new JComboBox<ClassOfResidentialProperty>();
@@ -204,82 +214,102 @@ public class RatingDemoMain extends JFrame {
 		.setModel(new DefaultComboBoxModel<ClassOfResidentialProperty>(ClassOfResidentialProperty.values()));
 	classOfProperty.setSize(new Dimension(10, 0));
 	classOfProperty.setBackground(Color.WHITE);
-	classOfProperty.setBounds(345, 120, 96, 19);
+	classOfProperty.setBounds(499, 123, 96, 19);
 	firePolicyPanel.add(classOfProperty);
 
 	JLabel rangeDiscountLabel = new JLabel("範囲割引");
-	rangeDiscountLabel.setBounds(276, 195, 60, 13);
+	rangeDiscountLabel.setBounds(365, 196, 89, 13);
 	firePolicyPanel.add(rangeDiscountLabel);
 
 	rangeDiscount = new JComboBox<RangeDiscountType>();
 	rangeDiscount.setModel(new DefaultComboBoxModel<RangeDiscountType>(RangeDiscountType.values()));
 	rangeDiscount.setSize(new Dimension(10, 0));
 	rangeDiscount.setBackground(Color.WHITE);
-	rangeDiscount.setBounds(345, 192, 96, 19);
+	rangeDiscount.setBounds(499, 195, 96, 19);
 	firePolicyPanel.add(rangeDiscount);
 
 	JLabel insuranceAmountLabel = new JLabel("保険金額");
-	insuranceAmountLabel.setBounds(19, 291, 60, 13);
+	insuranceAmountLabel.setBounds(19, 291, 89, 13);
 	firePolicyPanel.add(insuranceAmountLabel);
 
-	DecimalFormat df1 = new DecimalFormat("\\#,###");
+	DecimalFormat df1 = new DecimalFormat("\u00A4#,###,###,###.######");
 	insuranceAmountInput = new JFormattedTextField(df1);
-	insuranceAmountInput.setBounds(87, 288, 111, 19);
+	insuranceAmountInput.setBounds(144, 291, 137, 19);
+	insuranceAmountInput.setValue(Double.valueOf(0d));
 	firePolicyPanel.add(insuranceAmountInput);
 
 	JLabel insuranceAmountUnitLabel = new JLabel("千円");
-	insuranceAmountUnitLabel.setBounds(209, 291, 60, 13);
+	insuranceAmountUnitLabel.setBounds(286, 291, 60, 13);
 	firePolicyPanel.add(insuranceAmountUnitLabel);
 
 	JLabel integratedPaymentLabel = new JLabel("払込方法");
-	integratedPaymentLabel.setBounds(19, 324, 60, 13);
+	integratedPaymentLabel.setBounds(19, 324, 89, 13);
 	firePolicyPanel.add(integratedPaymentLabel);
 
 	integratedPaymentList = new JComboBox<IntegratedPayment>();
 	integratedPaymentList.setModel(new DefaultComboBoxModel<IntegratedPayment>(IntegratedPayment.values()));
-	integratedPaymentList.setBounds(87, 324, 116, 19);
+	integratedPaymentList.setBounds(144, 327, 137, 19);
 	firePolicyPanel.add(integratedPaymentList);
 
 	JLabel premiumAmountLabel = new JLabel("建物保険料");
-	premiumAmountLabel.setBounds(17, 379, 73, 13);
+	premiumAmountLabel.setBounds(17, 379, 91, 13);
 	firePolicyPanel.add(premiumAmountLabel);
 
-	DecimalFormat df2 = new DecimalFormat("\\#,###");
+	DecimalFormat df2 = new DecimalFormat("\u00A4#,###,###,###");
 	premiumAmountOutput = new JFormattedTextField(df2);
 	premiumAmountOutput.setBorder(new LineBorder(new Color(0, 0, 0), 2));
 	premiumAmountOutput.setFont(new Font("MS UI Gothic", Font.PLAIN, 14));
 	premiumAmountOutput.setOpaque(false);
 	premiumAmountOutput.setDisabledTextColor(new Color(0, 0, 0));
 	premiumAmountOutput.setEditable(false);
-	premiumAmountOutput.setBounds(87, 371, 122, 27);
+	premiumAmountOutput.setBounds(144, 374, 137, 27);
+	premiumAmountOutput.setValue(Long.valueOf(0L));
 	firePolicyPanel.add(premiumAmountOutput);
 
 	JButton quateButton = new JButton("保険料見積");
 	quateButton.addActionListener(new ActionListener() {
-	    public void actionPerformed(ActionEvent e) {
+	    public void actionPerformed(ActionEvent evt) {
 
 		try {
 		    BigDecimal premiumAmount = quatePremiumAmount();
-		    premiumAmountOutput.setText(premiumAmount.toPlainString());
-		} catch (Exception e1) {
-		    e1.printStackTrace();
+		    premiumAmountOutput.setValue(premiumAmount.longValue());
+		} catch (Exception e) {
+		    RatingDemoScreenHelper.displayMessage(messageAreaPanel, messageLabel, e.getMessage());
+		    e.printStackTrace();
 		}
 
 	    }
 	});
-	quateButton.setBounds(343, 370, 111, 21);
+	quateButton.setBounds(497, 401, 111, 21);
 	firePolicyPanel.add(quateButton);
+
+	startDateInput.addFocusListener(new StartDateFocusAdapter(termYearsInput, endDateInput));
+	termYearsInput.addFocusListener(new TermYearsFocusAdapter(startDateInput, endDateInput));
+
+	messageAreaPanel = new JPanel();
+	messageAreaPanel.setVisible(false);
+	messageAreaPanel.setBorder(new LineBorder(new Color(0, 0, 0), 2));
+	messageAreaPanel.setOpaque(false);
+	messageAreaPanel.setBackground(new Color(255, 255, 255));
+	contentPane.add(messageAreaPanel, BorderLayout.SOUTH);
+	messageAreaPanel.setLayout(new BorderLayout(0, 0));
+	messageLabel.setForeground(new Color(255, 0, 0));
+	messageLabel.setFont(new Font("MS UI Gothic", Font.ITALIC, 14));
+	messageAreaPanel.add(messageLabel, BorderLayout.NORTH);
+
+	JButton messageOkButton = new JButton("OK");
+	messageOkButton.addActionListener(new MessageCloseButtonActionListener(messageAreaPanel));
+	messageAreaPanel.add(messageOkButton, BorderLayout.EAST);
     }
 
     private BigDecimal quatePremiumAmount() throws Exception {
 
 	RatingContext context = createContext();
 	FireInsuranceRatingCalculator calculator = new FireInsuranceRatingCalculator(context);
-
 	return calculator.calculate();
     }
 
-    private RatingContext createContext() {
+    private RatingContext createContext() throws Exception {
 
 	RatingContext context = new RatingContext();
 	context.setPolicyStartDate(DateUtil.stringDateToCalendar(startDateInput.getText()));
@@ -291,49 +321,14 @@ public class RatingDemoMain extends JFrame {
 		(ClassOfResidentialProperty) classOfProperty.getModel().getSelectedItem());
 	context.setLocation((Location) locationList.getModel().getSelectedItem());
 	context.setRangeDiscountType((RangeDiscountType) rangeDiscount.getModel().getSelectedItem());
-	context.setWindHailstoneDisaster(windHailstoneDisaster());
-	context.setWaterDisaster(waterDisaster());
-	context.setTemporaryCost(temporaryCost());
-	context.setBuildingInsurance(buildingInsurance());
+	context.setWindHailstoneDisaster(RatingDemoScreenHelper.windHailstoneDisaster(windHailstoneDisaster));
+	context.setWaterDisaster(RatingDemoScreenHelper.waterDisaster(waterDisaster));
+	context.setTemporaryCost(RatingDemoScreenHelper.temporaryCost(temporaryCost));
+	context.setBuildingInsurance(RatingDemoScreenHelper.buildingInsurance(insuranceAmountInput));
 	context.setIntegratedPayment((IntegratedPayment) integratedPaymentList.getModel().getSelectedItem());
 
+	System.out.println(context);
+
 	return context;
-    }
-
-    private Incidental windHailstoneDisaster() {
-
-	if (windHailstoneDisaster.isSelected()) {
-	    return Incidental.YES;
-	}
-
-	return Incidental.NO;
-    }
-
-    private Incidental waterDisaster() {
-
-	if (waterDisaster.isSelected()) {
-	    return Incidental.YES;
-	}
-
-	return Incidental.NO;
-    }
-
-    private Incidental temporaryCost() {
-
-	if (temporaryCost.isSelected()) {
-	    return Incidental.YES;
-	}
-
-	return Incidental.NO;
-    }
-
-    private BigDecimal buildingInsurance() {
-
-	String text = insuranceAmountInput.getText();
-	if (text == null || insuranceAmountInput.getText() == "") {
-	    return new BigDecimal(0);
-	}
-
-	return new BigDecimal(text).multiply(new BigDecimal(1000));
     }
 }

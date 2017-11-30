@@ -1,7 +1,7 @@
 package jp.co.is.gw.rating.engine.fire.impl;
 
-import static com.google.common.base.Preconditions.*;
-import static jp.co.is.gw.rating.engine.fire.precondition.PreConditonsOfFireInsuranceRating.*;
+import static com.google.common.base.Preconditions.checkArgument;
+import static jp.co.is.gw.rating.engine.fire.precondition.PreConditons.*;
 import static jp.co.is.gw.rating.engine.fire.rate.RateRepository.*;
 
 import java.math.BigDecimal;
@@ -29,7 +29,7 @@ public class BuildingBasicRatingSpec extends AbstractRatingSpec {
 	@Override
 	public BigDecimal apply() {
 
-		checkArgument(ratingOfResidentialProperty(context()).isMatch());
+		checkArgument(ratingOfResidentialProperty(context()).isMatch(), "物件種別、構造級別、所在地は省略できません。");
 
 		return BASE_RATE_OF_RESIDENTIAL_PROPERTY.getRate(context());
 	}

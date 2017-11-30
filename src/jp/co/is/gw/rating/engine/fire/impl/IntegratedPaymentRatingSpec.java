@@ -1,5 +1,6 @@
 package jp.co.is.gw.rating.engine.fire.impl;
 
+import static jp.co.is.gw.rating.engine.fire.precondition.PreConditons.*;
 import static jp.co.is.gw.rating.engine.fire.rate.RateRepository.*;
 
 import java.math.BigDecimal;
@@ -67,20 +68,18 @@ public class IntegratedPaymentRatingSpec extends AbstractRatingSpec {
      */
     private static BigDecimal lumpSum(BigDecimal premiumAmount, RatingContext context) {
 
-	// 保険期間が1年
-	if (context.getPolicyPeriodYears() == 1) {
-	    return premiumAmount.setScale(-1, RoundingMode.FLOOR);
-	}
+	checkArgument(lumpSumPreCondition(context).isMatch(), "払込方法が「一時払」の場合、この保険期間は現在サポートされていません。");
 
 	// 保険期間が1年未満
-	if (context.getPolicyPeriodMonths() >= 1) {
+	if (context.getPolicyPeriodYears() == 0 && context.getPolicyPeriodMonths() >= 1) {
 	    return premiumAmount.//
 		    multiply(new BigDecimal(context.getPolicyPeriodMonths())).//
 		    divide(new BigDecimal(12)).//
 		    setScale(-1, RoundingMode.FLOOR);
 	}
 
-	throw new UnsupportedOperationException("払込方法が「一時払」の場合、この保険期間は現在サポートされていません。");
+	// 保険期間が1年
+	return premiumAmount.setScale(-1, RoundingMode.FLOOR);
     }
 
     /**
@@ -92,12 +91,10 @@ public class IntegratedPaymentRatingSpec extends AbstractRatingSpec {
      */
     private static BigDecimal longTermYearlyPayment(BigDecimal premiumAmount, RatingContext context) {
 
-	// 保険期間が1年以上
-	if (context.getPolicyPeriodYears() >= 1) {
-	    return premiumAmount.setScale(-1, RoundingMode.FLOOR);
-	}
+	checkArgument(longTermYearlyPaymentPreCondition(context).isMatch(), "払込方法が「年払い」の場合、この保険期間は現在サポートされていません。");
 
-	throw new UnsupportedOperationException("払込方法が「年払い」の場合、この保険期間は現在サポートされていません。");
+	// 保険期間が1年以上
+	return premiumAmount.setScale(-1, RoundingMode.FLOOR);
     }
 
     /**
@@ -109,11 +106,9 @@ public class IntegratedPaymentRatingSpec extends AbstractRatingSpec {
      */
     private static BigDecimal installmentPayment(BigDecimal premiumAmount, RatingContext context) {
 
-	// 保険期間が1年
-	if (context.getPolicyPeriodYears() != 1) {
-	    throw new UnsupportedOperationException("払込方法が「分割払い」の場合、この保険期間は現在サポートされていません。");
-	}
+	checkArgument(installmentPaymentPreCondition(context).isMatch(), "払込方法が「分割払い」の場合、この保険期間は現在サポートされていません。");
 
+	// 保険期間が1年
 	return premiumAmount.multiply(INTEGRATED_PAYMENT_FACTOR.getRate(context)).//
 		divide(new BigDecimal(context.getIntegratedPayment().getPaymentNum())).//
 		setScale(-1, RoundingMode.FLOOR);
@@ -129,9 +124,7 @@ public class IntegratedPaymentRatingSpec extends AbstractRatingSpec {
     private static BigDecimal longTermLumpSum(BigDecimal premiumAmount, RatingContext context) {
 
 	// 保険期間が1年未満、または36年を超える場合
-	if (context.getPolicyPeriodYears() < 1 || context.getPolicyPeriodYears() > 36) {
-	    throw new UnsupportedOperationException("払込方法が「分割払い」の場合、この保険期間は現在サポートされていません。");
-	}
+	checkArgument(installmentPaymentPreCondition(context).isMatch(), "払込方法が「分割払い」の場合、この保険期間は現在サポートされていません。");
 
 	return premiumAmount.multiply(LONG_TERM_FACTOR.getRate(context)).//
 		setScale(-1, RoundingMode.FLOOR);
