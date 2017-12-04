@@ -124,7 +124,7 @@ public class IntegratedPaymentRatingSpec extends AbstractRatingSpec {
     private static BigDecimal longTermLumpSum(BigDecimal premiumAmount, RatingContext context) {
 
 	// 保険期間が1年未満、または36年を超える場合
-	checkArgument(installmentPaymentPreCondition(context).isMatch(), "払込方法が「分割払い」の場合、この保険期間は現在サポートされていません。");
+	checkArgument(longTermLumpSumPreCondition(context).isMatch(), "払込方法が「長期一括払い」の場合、この保険期間は現在サポートされていません。");
 
 	return premiumAmount.multiply(LONG_TERM_FACTOR.getRate(context)).//
 		setScale(-1, RoundingMode.FLOOR);

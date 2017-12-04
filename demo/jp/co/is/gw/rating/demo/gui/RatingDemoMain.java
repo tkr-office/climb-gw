@@ -232,10 +232,10 @@ public class RatingDemoMain extends JFrame {
 	insuranceAmountLabel.setBounds(19, 291, 89, 13);
 	firePolicyPanel.add(insuranceAmountLabel);
 
-	DecimalFormat df1 = new DecimalFormat("\u00A4#,###,###,###.######");
+	DecimalFormat df1 = new DecimalFormat("#,###,###,###");
 	insuranceAmountInput = new JFormattedTextField(df1);
 	insuranceAmountInput.setBounds(144, 291, 137, 19);
-	insuranceAmountInput.setValue(Double.valueOf(0d));
+	insuranceAmountInput.setValue(Long.valueOf(0L));
 	firePolicyPanel.add(insuranceAmountInput);
 
 	JLabel insuranceAmountUnitLabel = new JLabel("千円");
@@ -295,7 +295,7 @@ public class RatingDemoMain extends JFrame {
 	messageAreaPanel.setLayout(new BorderLayout(0, 0));
 	messageLabel.setForeground(new Color(255, 0, 0));
 	messageLabel.setFont(new Font("MS UI Gothic", Font.ITALIC, 14));
-	messageAreaPanel.add(messageLabel, BorderLayout.NORTH);
+	messageAreaPanel.add(messageLabel, BorderLayout.CENTER);
 
 	JButton messageOkButton = new JButton("OK");
 	messageOkButton.addActionListener(new MessageCloseButtonActionListener(messageAreaPanel));
