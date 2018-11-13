@@ -23,7 +23,7 @@ public class TemporaryCostRatingSpecTest {
 	@Before
 	public void setUp() throws Exception {
 		context = new RatingContext();
-		testee = new TemporaryCostRatingSpec(new BuildingBasicRatingSpec(context), context);
+		testee = new TemporaryCostRatingSpec(new BuildingBasicRatingOfResidentialSpec(context), context);
 	}
 
 	/**

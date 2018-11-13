@@ -23,7 +23,7 @@ public class WaterDisasterRatingSpecTest {
 	@Before
 	public void setUp() throws Exception {
 		context = new RatingContext();
-		testee = new WaterDisasterRatingSpec(new BuildingBasicRatingSpec(context), context);
+		testee = new WaterDisasterRatingSpec(new BuildingBasicRatingOfResidentialSpec(context), context);
 	}
 
 	/**

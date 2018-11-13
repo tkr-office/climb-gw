@@ -1,7 +1,6 @@
 package jp.co.is.gw.rating.engine.fire;
 
-import static org.hamcrest.CoreMatchers.*;
-import static org.junit.Assert.*;
+import static jp.co.is.gw.rating.engine.test.util.Assertions.*;
 
 import org.junit.Test;
 
@@ -9,8 +8,7 @@ import jp.co.is.gw.rating.engine.common.RatingContext;
 import jp.co.is.gw.rating.engine.common.RatingSpec;
 import jp.co.is.gw.rating.engine.common.constants.Incidental;
 import jp.co.is.gw.rating.engine.common.constants.RangeDiscountType;
-import jp.co.is.gw.rating.engine.fire.impl.AbstractRatingSpec;
-import jp.co.is.gw.rating.engine.fire.impl.BuildingBasicRatingSpec;
+import jp.co.is.gw.rating.engine.fire.impl.BuildingBasicRatingOfResidentialSpec;
 import jp.co.is.gw.rating.engine.fire.impl.RangeDiscountRatingSpec;
 import jp.co.is.gw.rating.engine.fire.impl.TemporaryCostRatingSpec;
 import jp.co.is.gw.rating.engine.fire.impl.WaterDisasterRatingSpec;
@@ -24,11 +22,9 @@ public class FireInsuranceSpecFactoryTest {
 	@Test
 	public void testCreateRatingSpecOfBuilding() {
 
-		RatingSpec ratingSpec = FireInsuranceSpecFactory.createRatingSpecOfBuilding(new RatingContext());
-		RatingSpec depended = ((AbstractRatingSpec) ratingSpec).getDependRating();
-		depended = ((AbstractRatingSpec) depended).getDependRating();
+		RatingSpec actual = FireInsuranceSpecFactory.createRatingSpecOfBuilding(new RatingContext());
 
-		assertThat(depended instanceof BuildingBasicRatingSpec, is(true));
+		assertDepndOn(actual, BuildingBasicRatingOfResidentialSpec.class);
 
 	}
 
@@ -41,12 +37,9 @@ public class FireInsuranceSpecFactoryTest {
 		RatingContext context = new RatingContext();
 		context.setWindHailstoneDisaster(Incidental.YES);
 
-		RatingSpec ratingSpec = FireInsuranceSpecFactory.createRatingSpecOfBuilding(context);
-		RatingSpec depended = ((AbstractRatingSpec) ratingSpec).getDependRating();
-		depended = ((AbstractRatingSpec) depended).getDependRating();
+		RatingSpec actual = FireInsuranceSpecFactory.createRatingSpecOfBuilding(context);
 
-		assertThat(depended instanceof WindHailstoneDisasterRatingSpec, is(true));
-
+		assertDepndOn(actual, WindHailstoneDisasterRatingSpec.class);
 	}
 
 	/**
@@ -58,12 +51,9 @@ public class FireInsuranceSpecFactoryTest {
 		RatingContext context = new RatingContext();
 		context.setWaterDisaster(Incidental.YES);
 
-		RatingSpec ratingSpec = FireInsuranceSpecFactory.createRatingSpecOfBuilding(context);
-		RatingSpec depended = ((AbstractRatingSpec) ratingSpec).getDependRating();
-		depended = ((AbstractRatingSpec) depended).getDependRating();
+		RatingSpec actual = FireInsuranceSpecFactory.createRatingSpecOfBuilding(context);
 
-		assertThat(depended instanceof WaterDisasterRatingSpec, is(true));
-
+		assertDepndOn(actual, WaterDisasterRatingSpec.class);
 	}
 
 	/**
@@ -75,12 +65,9 @@ public class FireInsuranceSpecFactoryTest {
 		RatingContext context = new RatingContext();
 		context.setTemporaryCost(Incidental.YES);
 
-		RatingSpec ratingSpec = FireInsuranceSpecFactory.createRatingSpecOfBuilding(context);
-		RatingSpec depended = ((AbstractRatingSpec) ratingSpec).getDependRating();
-		depended = ((AbstractRatingSpec) depended).getDependRating();
+		RatingSpec actual = FireInsuranceSpecFactory.createRatingSpecOfBuilding(context);
 
-		assertThat(depended instanceof TemporaryCostRatingSpec, is(true));
-
+		assertDepndOn(actual, TemporaryCostRatingSpec.class);
 	}
 
 	/**
@@ -92,10 +79,9 @@ public class FireInsuranceSpecFactoryTest {
 		RatingContext context = new RatingContext();
 		context.setRangeDiscountType(RangeDiscountType.TwoByFour);
 
-		RatingSpec ratingSpec = FireInsuranceSpecFactory.createRatingSpecOfBuilding(context);
-		RatingSpec depended = ((AbstractRatingSpec) ratingSpec).getDependRating();
+		RatingSpec actual = FireInsuranceSpecFactory.createRatingSpecOfBuilding(context);
 
-		assertThat(depended instanceof RangeDiscountRatingSpec, is(true));
+		assertDepndOn(actual, RangeDiscountRatingSpec.class);
 
 	}
 

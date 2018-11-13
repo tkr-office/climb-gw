@@ -23,7 +23,7 @@ public class WindHailstoneDisasterRatingSpecTest {
 	@Before
 	public void setUp() throws Exception {
 		context = new RatingContext();
-		testee = new WindHailstoneDisasterRatingSpec(new BuildingBasicRatingSpec(context), context);
+		testee = new WindHailstoneDisasterRatingSpec(new BuildingBasicRatingOfResidentialSpec(context), context);
 	}
 
 	/**
@@ -58,9 +58,9 @@ public class WindHailstoneDisasterRatingSpecTest {
 
 	private static BigDecimal expected() {
 
-		BigDecimal expected = new BigDecimal(1.45);
+		BigDecimal expected = BigDecimal.valueOf(1.45);
 
-		return expected.multiply(new BigDecimal(1.10));
+		return expected.multiply(BigDecimal.valueOf(1.10));
 	}
 
 }

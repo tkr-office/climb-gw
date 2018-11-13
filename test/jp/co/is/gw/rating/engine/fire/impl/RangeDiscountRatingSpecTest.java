@@ -23,7 +23,7 @@ public class RangeDiscountRatingSpecTest {
 	@Before
 	public void setUp() throws Exception {
 		context = new RatingContext();
-		testee = new RangeDiscountRatingSpec(new BuildingBasicRatingSpec(context), context);
+		testee = new RangeDiscountRatingSpec(new BuildingBasicRatingOfResidentialSpec(context), context);
 	}
 
 	/**

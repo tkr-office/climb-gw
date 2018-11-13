@@ -22,37 +22,37 @@ public class BaseRateOfResidentialProperty implements GetRate {
 	private static Table<Location, ClassOfResidentialProperty, BigDecimal> RATE_TABLE = HashBasedTable.create();
 
 	static {
-		RATE_TABLE.put(Location.Sapporo, ClassOfResidentialProperty.ClassT, new BigDecimal(0.61));
-		RATE_TABLE.put(Location.Sapporo, ClassOfResidentialProperty.ClassH, new BigDecimal(1.45));
-		RATE_TABLE.put(Location.Sapporo, ClassOfResidentialProperty.ClassM, new BigDecimal(0.29));
+		RATE_TABLE.put(Location.Sapporo, ClassOfResidentialProperty.ClassT, BigDecimal.valueOf(0.61));
+		RATE_TABLE.put(Location.Sapporo, ClassOfResidentialProperty.ClassH, BigDecimal.valueOf(1.45));
+		RATE_TABLE.put(Location.Sapporo, ClassOfResidentialProperty.ClassM, BigDecimal.valueOf(0.29));
 
-		RATE_TABLE.put(Location.Aomori, ClassOfResidentialProperty.ClassT, new BigDecimal(0.81));
-		RATE_TABLE.put(Location.Aomori, ClassOfResidentialProperty.ClassH, new BigDecimal(2.03));
-		RATE_TABLE.put(Location.Aomori, ClassOfResidentialProperty.ClassM, new BigDecimal(0.33));
+		RATE_TABLE.put(Location.Aomori, ClassOfResidentialProperty.ClassT, BigDecimal.valueOf(0.81));
+		RATE_TABLE.put(Location.Aomori, ClassOfResidentialProperty.ClassH, BigDecimal.valueOf(2.03));
+		RATE_TABLE.put(Location.Aomori, ClassOfResidentialProperty.ClassM, BigDecimal.valueOf(0.33));
 
-		RATE_TABLE.put(Location.Sendai, ClassOfResidentialProperty.ClassT, new BigDecimal(0.53));
-		RATE_TABLE.put(Location.Sendai, ClassOfResidentialProperty.ClassH, new BigDecimal(1.13));
-		RATE_TABLE.put(Location.Sendai, ClassOfResidentialProperty.ClassM, new BigDecimal(0.28));
+		RATE_TABLE.put(Location.Sendai, ClassOfResidentialProperty.ClassT, BigDecimal.valueOf(0.53));
+		RATE_TABLE.put(Location.Sendai, ClassOfResidentialProperty.ClassH, BigDecimal.valueOf(1.13));
+		RATE_TABLE.put(Location.Sendai, ClassOfResidentialProperty.ClassM, BigDecimal.valueOf(0.28));
 
-		RATE_TABLE.put(Location.Utsunomiya, ClassOfResidentialProperty.ClassT, new BigDecimal(0.53));
-		RATE_TABLE.put(Location.Utsunomiya, ClassOfResidentialProperty.ClassH, new BigDecimal(1.35));
-		RATE_TABLE.put(Location.Utsunomiya, ClassOfResidentialProperty.ClassM, new BigDecimal(0.27));
+		RATE_TABLE.put(Location.Utsunomiya, ClassOfResidentialProperty.ClassT, BigDecimal.valueOf(0.53));
+		RATE_TABLE.put(Location.Utsunomiya, ClassOfResidentialProperty.ClassH, BigDecimal.valueOf(1.35));
+		RATE_TABLE.put(Location.Utsunomiya, ClassOfResidentialProperty.ClassM, BigDecimal.valueOf(0.27));
 
-		RATE_TABLE.put(Location.Maebashi, ClassOfResidentialProperty.ClassT, new BigDecimal(0.53));
-		RATE_TABLE.put(Location.Maebashi, ClassOfResidentialProperty.ClassH, new BigDecimal(1.36));
-		RATE_TABLE.put(Location.Maebashi, ClassOfResidentialProperty.ClassM, new BigDecimal(0.27));
+		RATE_TABLE.put(Location.Maebashi, ClassOfResidentialProperty.ClassT, BigDecimal.valueOf(0.53));
+		RATE_TABLE.put(Location.Maebashi, ClassOfResidentialProperty.ClassH, BigDecimal.valueOf(1.36));
+		RATE_TABLE.put(Location.Maebashi, ClassOfResidentialProperty.ClassM, BigDecimal.valueOf(0.27));
 
-		RATE_TABLE.put(Location.Saitama, ClassOfResidentialProperty.ClassT, new BigDecimal(0.57));
-		RATE_TABLE.put(Location.Saitama, ClassOfResidentialProperty.ClassH, new BigDecimal(1.20));
-		RATE_TABLE.put(Location.Saitama, ClassOfResidentialProperty.ClassM, new BigDecimal(0.31));
+		RATE_TABLE.put(Location.Saitama, ClassOfResidentialProperty.ClassT, BigDecimal.valueOf(0.57));
+		RATE_TABLE.put(Location.Saitama, ClassOfResidentialProperty.ClassH, BigDecimal.valueOf(1.20));
+		RATE_TABLE.put(Location.Saitama, ClassOfResidentialProperty.ClassM, BigDecimal.valueOf(0.31));
 
-		RATE_TABLE.put(Location.Kawaguchi, ClassOfResidentialProperty.ClassT, new BigDecimal(0.57));
-		RATE_TABLE.put(Location.Kawaguchi, ClassOfResidentialProperty.ClassH, new BigDecimal(1.20));
-		RATE_TABLE.put(Location.Kawaguchi, ClassOfResidentialProperty.ClassM, new BigDecimal(0.31));
+		RATE_TABLE.put(Location.Kawaguchi, ClassOfResidentialProperty.ClassT, BigDecimal.valueOf(0.57));
+		RATE_TABLE.put(Location.Kawaguchi, ClassOfResidentialProperty.ClassH, BigDecimal.valueOf(1.20));
+		RATE_TABLE.put(Location.Kawaguchi, ClassOfResidentialProperty.ClassM, BigDecimal.valueOf(0.31));
 
-		RATE_TABLE.put(Location.Hachioji, ClassOfResidentialProperty.ClassT, new BigDecimal(0.56));
-		RATE_TABLE.put(Location.Hachioji, ClassOfResidentialProperty.ClassH, new BigDecimal(1.20));
-		RATE_TABLE.put(Location.Hachioji, ClassOfResidentialProperty.ClassM, new BigDecimal(0.31));
+		RATE_TABLE.put(Location.Hachioji, ClassOfResidentialProperty.ClassT, BigDecimal.valueOf(0.56));
+		RATE_TABLE.put(Location.Hachioji, ClassOfResidentialProperty.ClassH, BigDecimal.valueOf(1.20));
+		RATE_TABLE.put(Location.Hachioji, ClassOfResidentialProperty.ClassM, BigDecimal.valueOf(0.31));
 	}
 
 	@Override
